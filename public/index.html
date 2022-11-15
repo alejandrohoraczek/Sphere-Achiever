@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Sphere Achiever</title>
+  </head>
+  <body>
+    <header>
+      <h1>Sphere Achiever</h1>
+      <div id="login-container">
+        <span id="login-status"></span>
+        <input type="text" name="username" id="username" />
+        <input type="password" name="password" id="password" />
+        <button id="login">Log In</button>
+      </div>
+    </header>
+    <main>
+      <section id="sphere">
+        <div class="todo">
+          <p class="todo-text">This is what i have to do</p>
+          <input type="checkbox" name="completed" id="completed" />
+          <button id="delete">
+            <i class="fa-sharp fa-solid fa-trash"></i>
+          </button>
+        </div>
+        <div class="todo">
+          <p class="todo-text">This is what i have to do</p>
+          <input type="checkbox" name="completed" id="completed" />
+          <button id="delete">
+            <i class="fa-sharp fa-solid fa-trash"></i>
+          </button>
+        </div>
+      </section>
+      <aside id="user-spheres">
+        <h2>Sphere Name</h2>
+      </aside>
+    </main>
+    <script>
+      const loginBtn = document.querySelector('#login')
+      const loginStatus = document.querySelector('#login-status')
+
+      loginBtn.addEventListener('click', async () => {
+        const username = document.querySelector('#username').value
+        const password = document.querySelector('#password').value
+        const body = { username: `${username}`, password: `${password}` }
+        try {
+          console.log(body)
+          const login = await fetch('/login', {
+            method: 'POST',
+            body: JSON.stringify(body),
+            headers: { 'Content-type': 'application/json; charset=UTF-8' },
+            credentials: 'include',
+          })
+          const response = await login.text()
+          if (response) loginStatus.innerText = response
+          console.log(response)
+        } catch (error) {
+          console.log('this error' + error)
+        }
+      })
+    </script>
+  </body>
+</html>

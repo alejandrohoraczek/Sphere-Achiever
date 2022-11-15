@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+header {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+main {
+  width: 90%;
+  min-height: 10vh;
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row-reverse nowrap;
+}
+
+#sphere {
+  flex: 1 1 80%;
+}
+
+.todo {
+  display: flex;
+  align-content: center;
+  align-items: center;
+
+  & .todo-text {
+    flex: 1 0;
+  }
+
+  // & #completed,
+  // #delete {
+  //   height: 50px;
+  //   width: 50px;
+  // }
+}
+
+#user-spheres {
+  flex: 1 0 min(400px, 20%);
+}
